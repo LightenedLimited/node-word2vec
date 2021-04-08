@@ -2,12 +2,10 @@
   "name": "word2vec",
   "version": "1.1.4",
   "description": "node.js interface to the Google word2vec tool",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "mocha",
-    "postinstall": "make --directory=src",
-    "test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
-    "codecov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/codecov/coverage --report lcovonly -- -R spec && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -27,15 +25,20 @@
   },
   "homepage": "https://github.com/Planeshifter/node-word2vec",
   "dependencies": {
+    "@types/chai": "^4.2.16",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^14.14.37",
     "change-case": "^3.0.1",
     "charm": "^1.0.0",
     "mime": "^2.4.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "chai": "4.x.x",
+    "chai": "^4.3.4",
     "codecov.io": "^0.1.5",
     "istanbul": "^0.4.5",
-    "mocha": "6.x.x"
+    "mocha": "^8.3.2"
   }
 }
